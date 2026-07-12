@@ -10,15 +10,16 @@
 </head>
 <body>
     <h1>Crack the Code</h1>
-    <p class="sub">Guess the 4-digit code</p>
-    <div id="guess">
-        Guess: ----
+    <div class="sub">Guess the 4-digit code</div>
+    <div id="reelWrap">
+        <div id="reel"></div>
+        <div id="pointer"></div>
     </div>
-    <div class="reel">
-        <span id="digit">0</span>
-    </div>
-    <div id="status">
-        Press <kbd>SPACE</kbd> to select digits. The first 4 selected digits are checked against the secret code.
-    </div>
+    <div id="slots"></div>
+    <div id="history"></div>
+    <div id="status">Guesses left: 6</div>
+    <button id="restartBtn" style="display: none;">New game</button>
+
+
 </body>
 </html>
