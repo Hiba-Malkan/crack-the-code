@@ -25,12 +25,12 @@ function buildReel() {
 
 function newSecret() {
     const pool = [0,1,2,3,4,5,6,7,8,9];
-    length = pool.length - 1;
+    let length = pool.length - 1;
     for (let i = length; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [pool[i], pool[j]] = [pool[j], pool[i]];
     }
-    secret = pool.slice(0, CODE_LEN);
+    return pool.slice(0, CODE_LEN);
 }
 
 function newGame() {
@@ -64,16 +64,16 @@ function renderHistory() {
         a.guess.forEach((digit, i) => {
             const c = document.createElement('div');
             c.className = 'hcell ' + a.feedback[i];
-            c.textContent = d;
+            c.textContent = digit;
             row.appendChild(c);
         });
         historyEl.appendChild(row);
     });
-    history.El.scrollTop = historyEl.scrollHeight;
+    historyEl.scrollTop = historyEl.scrollHeight;
 }
 
 function renderSlots() {
-    slotsEl.El.innerHTML = '';
+    slotsEl.innerHTML = '';
     for (let i = 0; i < CODE_LEN; i++) {
         const s = document.createElement('div');
         if (i < currentGuess.length) {
