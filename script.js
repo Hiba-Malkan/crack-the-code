@@ -24,7 +24,7 @@ setInterval(() => {
 }, 120);
 
 document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' || !running) {
+    if (e.code !== 'Space' || !running) {
         return;
     }
     e.preventDefault();
