@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background: black;
+    font-family: 'IM Fell English', serif;
+    color: #e9dcb8;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-family: 'Pirata One', cursive;
+    font-size: 56px;
+    letter-spacing: 2px; 
+    margin: 0 0 6px 0;
+    color: #e8c977;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6), 
+    0 0 24px rgba(0,0,0,0.4);
+
+}
+
+.sub {
+    font-size: 16px;
+    font-style: italic; 
+    color: #d6c8a3;
+    margin: 0 0 22px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+
+}
+
+#reel {
+    font-family: 'IM Fell English', serif;
+    font-size: 56px;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 3px solid #8a6a34;
+    padding: 12px 18px; 
+    background: rgba(12,8,4,0.7);
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px #8a6a34 inset, 
+    6px 8px 0 rgba(0,0,0,0.4);
+    color: #d8b45c;
+
+}
+
+#digit {
+    display: inline-block; 
+    width: 50px;
+    text-align: center;
+}
+
+#guess {
+    font-family: 'IM Fell English', serif;
+    font-size: 26px;
+    margin-bottom: 12px;
+    color: #e9dcb8;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+#status {
+    font-size: 16px;
+    color: #c8b890;
+    font-style: italic;
+    text-align: center;
+    max-width: 420px;
+}
