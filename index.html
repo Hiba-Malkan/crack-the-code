@@ -9,17 +9,53 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Crack the Code</h1>
-    <div class="sub">Guess the 4-digit code</div>
-    <div id="reelWrap">
-        <div id="reel"></div>
-        <div id="pointer"></div>
+    <div class="layout">
+        <div class="game-panel">
+            <h1>Crack the Code</h1>
+            <p class="sub">Guess the 4-digit code</p>
+            <button type="button" class="ghost-btn" id="howToBtn">How to Play</button>
+            <div class="card">
+                <p class="row-label">log of your attempts</p>
+                <div class="history" id="history"></div>
+                <div class="key">
+                    <span><span class="dot g">
+                        </span>right digit, right place</span>
+                    <span><span class="dot x">
+                        </span>anything else</span>
+                </div>
+                <p class="row-label">try your next guess</p>
+                <div id="reelWrap">
+                    <div id="reel"></div>
+                    <div id="pointer"></div>
+                </div>
+
+                <div class="slots" id="slots"></div>
+                <div class="status-line">
+                    <span id="progress">slot 1 of 4</span>
+                    <span class="streak" id="attemptsLeft">6 guesses left</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="slots"></div>
-    <div id="history"></div>
-    <div id="status">Guesses left: 6</div>
-    <button id="restartBtn" style="display: none;">New game</button>
+    <div class="modal-backdrop" id="modalBackdrop">
+        <div class="modal-box">
+            <h2>How to Play</h2>
+            <p>the reel doesn't stop turning til you make a guess. press <kbd>space</kbd> when the pointer lands on the digit you want to choose.
+                <br><br>only an exact digit in the exact spot shows green. everything else, right digit, wrong spot or just plain wrong reads gray.<br><br>
+                6 guesses is a fair game. however, you can try as long as you want past that.
+            </p>
+            <button type="button" class="modal-btn" data-close="modalBackdrop">got it</button>
 
-
+        </div>
+    </div>
+    <div class="modal-backdrop" id="resultModal">
+        <div class="modal-box">
+            <h2 id="resultTitle"></h2>
+            <p id="resultMessage"></p>
+            <button class="modal-btn" id="resultBtn"></button>
+        
+        </div>
+    </div>
+    <div class="flash" id="flash"></div>
 </body>
 </html>
