@@ -109,7 +109,7 @@ function updateStatus() {
     statusEl.textContent = gameOver ? 'meow' : 'slot ' + (currentGuess.length + 1) + ' of ' + CODE_LEN;
     const left = MAX_ATTEMPTS - attempts.length;
     if (left > 0) {
-        attemptsLeftEl.textContent = left + (left === 1 ? ' guess left' : 'guesses left');
+        attemptsLeftEl.textContent = left + (left === 1 ? ' guess left' : ' guesses left');
     }
     else{
         attemptsLeftEl.textContent = attempts.length + ' guesses so far';
@@ -159,7 +159,7 @@ function submitGuess() {
         playWinSound(); 
         flashLight();
         const msg = n <= MAX_ATTEMPTS 
-            ? 'cracked the code in ' + n + (n === 1 ? ' guess.' : ' guesses.')
+            ? 'you cracked the code in ' + n + (n === 1 ? ' guess.' : ' guesses.')
             : 'took ' + n + ' guesses - ' + (n - MAX_ATTEMPTS) + ' over the fair try.';
             openResultModal('you win!', msg, 'play again', newGame);
     }
