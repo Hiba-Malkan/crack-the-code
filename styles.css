@@ -58,6 +58,7 @@ h1 {
 #reelWrap {
     position: relative;
     max-width: 420px;
+    width: 420px;
     height: 86px;
     overflow: hidden;
     border: 3px solid #4a3218;
@@ -67,6 +68,18 @@ h1 {
     box-shadow: 0 0 0 1px #8a6a34 inset;
 
 }
+
+#reelWrap::before,
+#reelWrap::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 28%;
+    z-index: 2;
+    pointer-events: none;
+}
+
 
 #reelWrap::before {
     left: 0;
@@ -80,13 +93,13 @@ h1 {
 #reel {
     position: absolute;
     top: 0;
-    left: 0; 
+    left: 50%; 
     height: 100%;
     display: flex;
     will-change: transform;
     display: flex;
 }
-@keyframes scroll {
+@keyframes reelScroll {
     from {
         transform: translateX(0);
     }

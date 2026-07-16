@@ -1,6 +1,6 @@
 const CODE_LEN = 4; 
 const MAX_ATTEMPTS = 6;
-const DIGIT_DURATION = 120;
+const DIGIT_DURATION = 380;
 let secret = [];
 let attempts = [];
 let currentGuess = [];
@@ -11,11 +11,26 @@ const reelEl = document.getElementById('reel');
 const slotsEl = document.getElementById('slots');
 const historyEl = document.getElementById('history');
 const statusEl = document.getElementById('status');
-const restartBtn = document.getElementById('restartBtn');
+const attemptsLeftEl = document.getElementById('attemptsLeft');
+const flash = document.getElementById('flash');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const resultModal = document.getElementById('resultModal');
+const resultTitle = document.getElementById('resultTitle');
+const resultMessage = document.getElementById('resultMessage');
+const resultBtn = document.getElementById('resultBtn');
+
+function anyModalOpen() {
+    return modalBackdrop.classList.contains('show') || resultModal.classList.contains('show');
+}
+
+document.getElementById('howToBtn').addEventListener('click', () => modalBackdrop.classList.add('show'));
+document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => document.getElementById(btn.dataset.close).classList.remove('show'));
+});
 
 function buildReel() {
     reelEl.innerHTML = '';
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < 400; i++) {
         const d = document.createElement('div');
         d.className = 'digit';
         d.textContent = i % 10;
@@ -41,10 +56,12 @@ function newGame() {
     renderHistory();
     renderSlots();
     updateStatus();
-    startTime = performance.now();
-    restartBtn.style.display = 'none';
 }
 
+function startReel() {
+    reelEl.style.animation = 'reelScroll ' + (10 * DIGIT_DURATION) + 'ms linear infinite';
+    startTime = performance.now();
+}
 
 function evaluate(guess) {
     const feedback = new Array(CODE_LEN).fill('gray');
@@ -82,24 +99,21 @@ function renderSlots() {
         }
         else {
             s.className = 'slot empty';
-            s.textContent = '';
+            s.textContent = '.';
         }
         slotsEl.appendChild(s);
     }
 }
 
-function updateStatus(msg) {
-    if (msg) {
-        statusEl.textContent = msg;
-        return;
-    }
+function updateStatus() {
+    statusEl.textContent = gameOver ? 'meow' : 'slot ' + (currentGuess.length + 1) + ' of ' + CODE_LEN;
     const left = MAX_ATTEMPTS - attempts.length;
-    if (!gameOver) {
-        statusEl.textContent = 'Guesses left: ' + left;
-
+    if (left > 0) {
+        attemptsLeftEl.textContent = left + (left === 1 ? ' guess left' : 'guesses left');
     }
-    else {
-        statusEl.textContent = 'Game Over. Secret: ' + secret.join('');
+    else{
+        attemptsLeftEl.textContent = attempts.length + ' guesses so far';
+
     }
 }
 
@@ -109,7 +123,7 @@ function currentDigitIndex(elapsed) {
 }
 
 function catchDigit() {
-    if (gameOver || currentGuess.length >= CODE_LEN) {
+    if (gameOver || currentGuess.length >= CODE_LEN || anyModalOpen()) {
         return;
     }
     const elapsed = performance.now() - startTime;
@@ -117,11 +131,23 @@ function catchDigit() {
     const digit = idx % 10;
     currentGuess.push(digit);
     renderSlots();
+    updateStatus();
     if (currentGuess.length === CODE_LEN) {
         submitGuess();
     }
 }
 
+function openResultModal(title, message, actionLabel, action) {
+    resultTitle.textContent = title;
+    resultMessage.textContent = message;
+    resultBtn.textContent = actionLabel;
+    resultBtn.onclick = () => {
+        
+        resultModal.classList.remove('show');
+        action();
+    };
+    resultModal.classList.add('show');
+}
 function submitGuess() {
     const feedback = evaluate(currentGuess);
     attempts.push({ guess: currentGuess.slice(), feedback });
@@ -129,20 +155,36 @@ function submitGuess() {
     const won = feedback.every(f => f === 'green');
     if (won) {
         gameOver = true;
-        updateStatus('You won! Code: ' + secret.join('') + ' in ' + attempts.length + ' guesses.');
-        restartBtn.style.display = 'inline-block';
+        const n = attempts.length;
+        playWinSound(); 
+        flashLight();
+        const msg = n <= MAX_ATTEMPTS 
+            ? 'cracked the code in ' + n + (n === 1 ? ' guess.' : ' guesses.')
+            : 'took ' + n + ' guesses - ' + (n - MAX_ATTEMPTS) + ' over the fair try.';
+            openResultModal('you win!', msg, 'play again', newGame);
     }
-    else if (attempts.length === MAX_ATTEMPTS) {
-        gameOver = true;
-        updateStatus('Out of guesses. Code was ' + secret.join('') + '.');
-        restartBtn.style.display = 'inline-block';
+    else if (attempts.length === MAX_ATTEMPTS){
+
+        openResultModal('six tries up!', 'keep trying if you wish now.', () => {});
+        currentGuess = [];
+        renderSlots();
+
     }
     else {
         currentGuess = [];
         renderSlots();
-        updateStatus();
     }
+    updateStatus(); 
 
+}
+
+function flashLight() {
+    flash.classList.add('show');
+    setTimeout(() => flash.classList.remove('show'), 350);
+}
+
+function playWinSound() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
 }
 
 document.addEventListener('keydown', (e) => {
@@ -152,6 +194,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-restartBtn.addEventListener('click', newGame);
 buildReel();
+startReel();
 newGame();
+modalBackdrop.classList.add('show');
