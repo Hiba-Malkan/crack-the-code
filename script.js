@@ -165,7 +165,7 @@ function submitGuess() {
     }
     else if (attempts.length === MAX_ATTEMPTS){
 
-        openResultModal('six tries up!', 'keep trying if you wish now.', () => {});
+        openResultModal('six tries up!', 'keep trying if you wish now.', 'continue', () => {});
         currentGuess = [];
         renderSlots();
 

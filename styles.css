@@ -58,7 +58,6 @@ h1 {
 #reelWrap {
     position: relative;
     max-width: 420px;
-    width: 420px;
     height: 86px;
     overflow: hidden;
     border: 3px solid #4a3218;
