@@ -183,8 +183,11 @@ function flashLight() {
     setTimeout(() => flash.classList.remove('show'), 350);
 }
 
+const winSound = new Audio("sound/win.mp3");
+
 function playWinSound() {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    winSound.currentTime = 0;
+    winSound.play();
 }
 
 document.addEventListener('keydown', (e) => {
