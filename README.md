@@ -50,6 +50,6 @@ or open index.html directly in your browser
 used copilot for minor css fixes
 
 ---
-written: fri, 17 july by Hiba
+### written: fri, 17 july
 ---
 made for onekey
