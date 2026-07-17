@@ -2,7 +2,7 @@
 
 demo: https://crack-the-code-chi.vercel.app/
 
-crack the code is a code-breaking game where you try to guess the secret 4 digit code
+crack the code is a code-breaking game where you try to guess the secret 4- digit code. you get 6 attempts to do so in order to win. past that, you can try till you guess the code correctly. 
 
 # how to play 
 the game generates a random 4 digit no. that you have to guess.
@@ -49,5 +49,7 @@ or open index.html directly in your browser
 ## ai usage
 used copilot for minor css fixes
 
-## written: fri, 17 july by Hiba
-## made for onekey
+---
+written: fri, 17 july by Hiba
+---
+made for onekey
