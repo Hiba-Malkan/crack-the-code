@@ -180,7 +180,7 @@ function submitGuess() {
 
 function flashLight() {
     flash.classList.add('show');
-    setTimeout(() => flash.classList.remove('show'), 350);
+    setTimeout(() => flash.classList.remove('show'), 400);
 }
 
 const winSound = new Audio("sound/win.mp3");
