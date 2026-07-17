@@ -314,7 +314,7 @@ h1 {
     box-shadow: 0 0 0 2px #8a6a14 inset, 10px 12px 0 rgba(0,0,0,0.5);
     position: relative;
     transform-origin: top center;
-    animation: unfurl 0.7s cubic bezier(0.2,0.8,0.3,1) both;
+    animation: unfurl 0.7s cubic-bezier(0.2,0.8,0.3,1) both;
 
     
 }
