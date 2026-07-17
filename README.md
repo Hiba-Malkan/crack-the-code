@@ -14,7 +14,7 @@ the game generates a random 4 digit no. that you have to guess.
 ## features
 - a spinning? reel to select your guesses from
 - a random 4-digit code you have to guess
-- a log og your previous guesses
+- a log of your previous guesses
 - green and gray color feedback to indicate if the right digit is in the right spot
 - win and lose screens
 - how to play instructions
@@ -51,5 +51,4 @@ used copilot for minor css fixes
 
 ---
 ### written: fri, 17 july
----
 made for onekey
