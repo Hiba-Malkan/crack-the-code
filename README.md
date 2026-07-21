@@ -1,9 +1,10 @@
 # crack the code
-
-demo: https://crack-the-code-chi.vercel.app/
-
 crack the code is a code-breaking game where you try to guess the secret 4- digit code. you get 6 attempts to do so in order to win. past that, you can try till you guess the code correctly. 
 
+demo: https://crack-the-code-chi.vercel.app/
+---
+![alt text](images/readme.png)
+---
 # how to play 
 the game generates a random 4 digit no. that you have to guess.
 - pick a digit my pressing the `space` key when the pointer lands on the number you want to guess
