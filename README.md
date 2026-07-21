@@ -50,5 +50,5 @@ or open index.html directly in your browser
 used copilot for minor css fixes
 
 ---
-### written: fri, 17 july
+### written: fri, 17 july, 2026
 made for onekey
